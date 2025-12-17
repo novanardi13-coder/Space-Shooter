@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Shooter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🚀 Space Shooter</h1>
+  <p>Arrow Left/Right = Gerak | Space = Tembak</p>
+  <div id="game">
+    <div id="player"></div>
+  </div>
+  <p>Score: <span id="score">0</span></p>
+  <div id="overlay" class="hidden">
+    <h2 id="result">GAME OVER</h2>
+    <button onclick="restartGame()">Restart</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
