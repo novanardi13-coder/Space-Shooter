@@ -1,12 +1,14 @@
 const game = document.getElementById('game');
 const player = document.getElementById('player');
 const scoreEl = document.getElementById('score');
+const livesEl = document.getElementById('lives');
 const overlay = document.getElementById('overlay');
 
 let score = 0;
 let playerX = 140;
 let bullets = [];
 let enemies = [];
+let lives = 3;
 let gameOver = false;
 
 // Player movement
@@ -55,6 +57,7 @@ function loop() {
   // Move enemies
   enemies.forEach((e,i) => {
     e.style.top = (parseInt(e.style.top)+2) + 'px';
+
     // Check collision with bullets
     bullets.forEach((b,j) => {
       if(collide(b,e)){
@@ -66,10 +69,16 @@ function loop() {
         scoreEl.textContent = score;
       }
     });
+
     // Check collision with player
     if(collide(e,player)){
-      endGame();
+      game.removeChild(e);
+      enemies.splice(i,1);
+      lives -= 1;
+      livesEl.textContent = lives;
+      if(lives <= 0) endGame();
     }
+
     // Enemy out of bounds
     if(parseInt(e.style.top)>480){
       game.removeChild(e);
@@ -108,7 +117,9 @@ function restartGame(){
   bullets = [];
   enemies = [];
   score = 0;
+  lives = 3;
   scoreEl.textContent = score;
+  livesEl.textContent = lives;
   playerX = 140;
   player.style.left = playerX + 'px';
   gameOver = false;
